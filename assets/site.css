@@ -37,10 +37,10 @@ p { margin: 0 0 1.2em; font-size: 0.95rem; }
 
 /* ヘッダー */
 .site-header { padding: 1.5rem 0; }
-.site-header .wrap { display: flex; align-items: center; justify-content: space-between; }
+.site-header .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; row-gap: 0.4rem; }
 .wordmark { display: flex; align-items: center; gap: 0.55rem; font-family: var(--font-num); font-weight: 600; font-size: 1.05rem; letter-spacing: 0.02em; color: var(--dest); text-decoration: none; }
 .wordmark .mark { display: block; }
-.site-nav { display: flex; gap: 1.25rem; font-size: 0.8rem; }
+.site-nav { display: flex; flex-wrap: wrap; gap: 0.2rem 1.25rem; font-size: 0.8rem; }
 .site-nav a { text-decoration: none; color: var(--sub); }
 .site-nav a:hover { color: var(--accent); }
 .site-nav a[aria-current="page"],
@@ -63,8 +63,8 @@ footer .copyright { color: var(--muted); margin-left: auto; }
 
 /* ===== ホーム（.page-home） ===== */
 
-/* ヒーロー */
-.hero { padding: 4.5rem 0 5rem; text-align: center; }
+/* ヒーロー（.wrap の左右パディングを 0 で潰さないこと） */
+.hero { padding: 4.5rem 1.5rem 5rem; text-align: center; }
 .hero h1 {
   color: var(--accent);
   font-weight: 700;
@@ -136,7 +136,7 @@ footer .copyright { color: var(--muted); margin-left: auto; }
 .hero-toggle[data-playing="false"] .icon-pause { display: none; }
 /* モバイル: h1 がファーストビューに入るようモックを縮小（320px 幅でもボタンがはみ出さない） */
 @media (max-width: 560px) {
-  .hero { padding: 2rem 0 3.5rem; }
+  .hero { padding: 2rem 1.5rem 3.5rem; }
   .hero-visual, .hero-mock { width: 190px; }
   .hero h1 { margin-top: 2rem; }
 }

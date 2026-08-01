@@ -8,7 +8,7 @@
 
 ```
 index.html              ホーム
-support/index.html      /support/   サポート（よくある質問）
+support/index.html      /support/   よくある質問
 feedback/index.html     /feedback/  フィードバック
 privacy/index.html      /privacy/   プライバシーポリシー
 donate/index.html       /donate/    開発者を支援する
