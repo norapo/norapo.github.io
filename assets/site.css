@@ -63,17 +63,17 @@ footer .copyright { color: var(--muted); margin-left: auto; }
 
 /* ===== ホーム（.page-home） ===== */
 
-/* ヒーロー（.wrap の左右パディングを 0 で潰さないこと） */
-.hero { padding: 4.5rem 1.5rem 5rem; text-align: center; }
+/* ヒーロー: コピー → ビジュアル → リード の順（.wrap の左右パディングを 0 で潰さないこと） */
+.hero { padding: 2rem 1.5rem 5rem; text-align: center; }
 .hero h1 {
   color: var(--accent);
   font-weight: 700;
   font-size: clamp(1.5rem, 4.5vw, 1.9rem);
   line-height: 1.7;
   letter-spacing: 0.06em;
-  margin: 3.5rem 0 1rem;
+  margin: 0 0 2rem;
 }
-.hero .lede { max-width: 34rem; margin: 0 auto; font-size: 0.95rem; }
+.hero .lede { max-width: 34rem; margin: 2rem auto 0; font-size: 0.95rem; }
 /* 公開準備中の表示（App Store 公開時に公式バッジの <a> へ差し替える） */
 .store-note {
   display: inline-block;
@@ -136,9 +136,8 @@ footer .copyright { color: var(--muted); margin-left: auto; }
 .hero-toggle[data-playing="false"] .icon-pause { display: none; }
 /* モバイル: h1 がファーストビューに入るようモックを縮小（320px 幅でもボタンがはみ出さない） */
 @media (max-width: 560px) {
-  .hero { padding: 2rem 1.5rem 3.5rem; }
+  .hero { padding-bottom: 3.5rem; }
   .hero-visual, .hero-mock { width: 190px; }
-  .hero h1 { margin-top: 2rem; }
 }
 .mini-mock { width: 132px; height: auto; display: block; }
 .watch-mock { width: 128px; height: auto; display: block; }
