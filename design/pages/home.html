@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Norapo — 地図を見なくても、行きたいところへ。</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #221F1B;
+  --surface: #2C2823;
+  --accent: #ECE4D4;
+  --dest: #D8D0C0;
+  --sub: #C2B9A4;
+  --faint: #6E6654;
+  --font-jp: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --font-num: "Instrument Sans", -apple-system, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--sub);
+  font-family: var(--font-jp);
+  font-weight: 400;
+  line-height: 2;
+  letter-spacing: 0.04em;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 40rem; margin: 0 auto; padding: 0 1.5rem; }
+a { color: var(--dest); text-decoration: underline; text-underline-offset: 0.25em; text-decoration-thickness: 1px; }
+a:hover { color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+/* ヘッダー */
+.site-header { padding: 1.5rem 0; }
+.site-header .wrap { display: flex; align-items: baseline; justify-content: space-between; }
+.wordmark {
+  font-family: var(--font-num);
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+  color: var(--dest);
+  text-decoration: none;
+}
+.site-nav { display: flex; gap: 1.25rem; font-size: 0.8rem; }
+.site-nav a { text-decoration: none; color: var(--sub); }
+.site-nav a:hover { color: var(--accent); }
+
+/* ヒーロー: 案内画面の文法（目的地名 → 矢印 → 距離） */
+.hero { padding: 4.5rem 0 5rem; text-align: center; }
+.guidance { display: flex; flex-direction: column; align-items: center; gap: 1.6rem; }
+.guidance .dest-name { color: var(--dest); font-weight: 500; font-size: 0.95rem; margin: 0; }
+.hero-arrow { width: 84px; height: auto; color: var(--accent); transform: rotate(24deg); animation: settle 1.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes settle { from { transform: rotate(-22deg); } to { transform: rotate(24deg); } }
+@media (prefers-reduced-motion: reduce) { .hero-arrow { animation: none; } }
+.distance {
+  font-family: var(--font-num);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  font-size: 2.5rem;
+  color: var(--accent);
+  line-height: 1;
+  margin: 0;
+}
+.distance .unit { font-size: 50%; font-weight: 500; color: var(--sub); margin-left: 0.15em; }
+
+.hero h1 {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 4.5vw, 1.9rem);
+  line-height: 1.7;
+  letter-spacing: 0.06em;
+  margin: 3.5rem 0 1rem;
+}
+.hero .lede { max-width: 34rem; margin: 0 auto; font-size: 0.95rem; }
+.store-note {
+  display: inline-block;
+  margin-top: 2.5rem;
+  padding: 0.8rem 1.6rem;
+  border: 1px solid var(--faint);
+  border-radius: 14px;
+  color: var(--sub);
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+.store-note:hover { border-color: var(--sub); color: var(--accent); }
+
+/* セクション共通 */
+section { padding: 3.5rem 0; border-top: 1px solid var(--faint); }
+h2 { color: var(--dest); font-weight: 700; font-size: 1.1rem; letter-spacing: 0.08em; margin: 0 0 2rem; }
+p { margin: 0 0 1.2em; font-size: 0.95rem; }
+
+/* 使い方: 実際の操作手順（アプリ内ガイドの文言と一致させる） */
+.steps { list-style: none; margin: 0; padding: 0; }
+.steps li { padding: 1.4rem 0; display: flex; gap: 1.4rem; align-items: baseline; }
+.steps li + li { border-top: 1px solid var(--faint); }
+.steps .n {
+  font-family: var(--font-num);
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: var(--faint);
+  min-width: 1.4em;
+}
+.steps h3 { color: var(--dest); font-weight: 500; font-size: 0.98rem; margin: 0 0 0.3rem; }
+.steps p { margin: 0; font-size: 0.88rem; }
+
+/* 誠実ライン */
+.honest { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem 2rem; font-size: 0.92rem; }
+.honest li { color: var(--dest); padding-left: 1.2em; position: relative; }
+.honest li::before { content: ""; position: absolute; left: 0; top: 0.75em; width: 0.45em; height: 1px; background: var(--faint); }
+@media (max-width: 480px) { .honest { grid-template-columns: 1fr; } }
+
+/* フッター */
+footer { border-top: 1px solid var(--faint); padding: 2.5rem 0 3.5rem; font-size: 0.8rem; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; }
+footer a { text-decoration: none; color: var(--sub); }
+footer a:hover { color: var(--accent); }
+footer .copyright { color: var(--faint); margin-left: auto; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="#">Norapo</a>
+    <nav class="site-nav" aria-label="サイト内">
+      <a href="#howto">使い方</a>
+      <a href="#">サポート</a>
+      <a href="#">プライバシー</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero wrap">
+    <div class="guidance" role="img" aria-label="Norapo の案内画面。目的地名の下に矢印と距離だけが表示される">
+      <p class="dest-name">喫茶 こもれび</p>
+      <svg class="hero-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="-2.25 -2.25 70.5 96.5" aria-hidden="true">
+        <path d="M33 0 L66 92 L33 66.2 L0 92 Z" fill="currentColor" stroke="currentColor" stroke-width="4.5" stroke-linejoin="round"/>
+      </svg>
+      <p class="distance">640<span class="unit">m</span></p>
+    </div>
+    <h1>地図を見なくても、<br>行きたいところへ。</h1>
+    <p class="lede">Norapo（ノラポ）は目的地への方向と距離だけを iPhone と Apple&nbsp;Watch に表示する矢印ナビです。</p>
+    <a class="store-note" href="#">App Store で公開準備中</a>
+  </div>
+
+  <section id="howto">
+    <div class="wrap">
+      <h2>使い方は共有するだけ</h2>
+      <ol class="steps">
+        <li>
+          <span class="n" aria-hidden="true">1</span>
+          <div>
+            <h3>地図アプリで行きたい場所を見つける</h3>
+            <p>Google マップでも、Apple のマップでも。いつもどおり探します。</p>
+          </div>
+        </li>
+        <li>
+          <span class="n" aria-hidden="true">2</span>
+          <div>
+            <h3>共有メニューから Norapo を選ぶ</h3>
+            <p>それだけでその場所が目的地になります。</p>
+          </div>
+        </li>
+        <li>
+          <span class="n" aria-hidden="true">3</span>
+          <div>
+            <h3>あとは矢印と距離だけ。寄り道も自由</h3>
+            <p>スマホをしまって歩けます。Apple Watch がそっと方向を教えてくれます。</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>地図を持たないということ</h2>
+      <p>Norapo は地図も最短ルートも表示しません。寄り道も回り道も自由なまま、それでもちゃんとたどり着ける。いまここの風景と会話に散歩やおでかけの時間を返すための道具です。</p>
+      <ul class="honest">
+        <li>無料・広告なし</li>
+        <li>アカウント登録なし</li>
+        <li>現在地を外部に送らない</li>
+        <li>Apple Watch 単体で方向を計算</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="#">サポート</a>
+    <a href="#">プライバシーポリシー</a>
+    <a href="#">フィードバック</a>
+    <a href="#">開発者を支援する</a>
+    <span class="copyright">© 2026 Norapo</span>
+  </div>
+</footer>
+
+</body>
+</html>

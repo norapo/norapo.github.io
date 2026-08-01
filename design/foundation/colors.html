@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>カラー — Norapo Site Foundation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #221F1B; --surface: #2C2823; --accent: #ECE4D4; --dest: #D8D0C0; --sub: #C2B9A4; --faint: #6E6654;
+  --font-jp: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", sans-serif;
+  --font-num: "Instrument Sans", -apple-system, sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--sub); font-family: var(--font-jp); line-height: 1.8; letter-spacing: 0.04em; padding: 2.5rem 1.5rem; -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 44rem; margin: 0 auto; }
+h1 { color: var(--accent); font-size: 1.2rem; font-weight: 700; letter-spacing: 0.08em; margin: 0 0 0.4rem; }
+.lede { font-size: 0.85rem; margin: 0 0 2.5rem; }
+h2 { color: var(--dest); font-size: 0.95rem; font-weight: 700; letter-spacing: 0.08em; margin: 2.5rem 0 1rem; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.8rem; }
+.swatch { border-radius: 14px; padding: 1rem 1.1rem; min-height: 6.5rem; display: flex; flex-direction: column; justify-content: flex-end; border: 1px solid var(--faint); }
+.swatch .token { font-family: var(--font-num); font-weight: 600; font-size: 0.85rem; }
+.swatch .hex { font-family: var(--font-num); font-size: 0.75rem; opacity: 0.75; }
+.swatch .use { font-size: 0.72rem; opacity: 0.75; margin-top: 0.2rem; }
+.light-panel { background: #F0EADC; border-radius: 14px; padding: 1.5rem; margin-top: 1rem; }
+.light-panel h2 { color: #221F1B; margin-top: 0; }
+.light-panel .swatch { border-color: #CFC6B0; }
+.rule-note { font-size: 0.8rem; color: var(--faint); margin-top: 2rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>カラー</h1>
+  <p class="lede">アプリのデザイントークン（design/01）をそのまま使う。これ以外の色は使わない。彩度の高い色・純黒・純白は不使用。<code>accent</code> はヒーロー専用（矢印・距離・ページ見出し）。</p>
+
+  <h2>炭（アプリと同一・サイト標準）</h2>
+  <div class="grid">
+    <div class="swatch" style="background:#221F1B; color:#ECE4D4;">
+      <span class="token">bg</span><span class="hex">#221F1B</span><span class="use">背景（暖かい炭色）</span>
+    </div>
+    <div class="swatch" style="background:#2C2823; color:#ECE4D4;">
+      <span class="token">surface</span><span class="hex">#2C2823</span><span class="use">面（手順ブロックなど）</span>
+    </div>
+    <div class="swatch" style="background:#ECE4D4; color:#221F1B;">
+      <span class="token">accent</span><span class="hex">#ECE4D4</span><span class="use">生成り。矢印・距離・h1 専用</span>
+    </div>
+    <div class="swatch" style="background:#D8D0C0; color:#221F1B;">
+      <span class="token">dest</span><span class="hex">#D8D0C0</span><span class="use">見出し・リンク・強調</span>
+    </div>
+    <div class="swatch" style="background:#C2B9A4; color:#221F1B;">
+      <span class="token">sub</span><span class="hex">#C2B9A4</span><span class="use">本文（対比 8.4:1）</span>
+    </div>
+    <div class="swatch" style="background:#6E6654; color:#ECE4D4;">
+      <span class="token">faint</span><span class="hex">#6E6654</span><span class="use">罫線・ゴースト矢印。テキスト不可</span>
+    </div>
+  </div>
+
+  <div class="light-panel">
+    <h2>生成り紙（ライト比較案の派生トークン）</h2>
+    <div class="grid">
+      <div class="swatch" style="background:#F0EADC; color:#221F1B;">
+        <span class="token">paper.bg</span><span class="hex">#F0EADC</span><span class="use">紙（accent から導出）</span>
+      </div>
+      <div class="swatch" style="background:#F7F2E7; color:#221F1B;">
+        <span class="token">paper.surface</span><span class="hex">#F7F2E7</span><span class="use">面</span>
+      </div>
+      <div class="swatch" style="background:#221F1B; color:#ECE4D4;">
+        <span class="token">paper.ink</span><span class="hex">#221F1B</span><span class="use">炭インク。矢印・距離・h1</span>
+      </div>
+      <div class="swatch" style="background:#5C5546; color:#F0EADC;">
+        <span class="token">paper.sub</span><span class="hex">#5C5546</span><span class="use">本文</span>
+      </div>
+      <div class="swatch" style="background:#CFC6B0; color:#221F1B;">
+        <span class="token">paper.faint</span><span class="hex">#CFC6B0</span><span class="use">罫線のみ</span>
+      </div>
+    </div>
+  </div>
+
+  <p class="rule-note">影・グラデーションは原則なし。角丸はボタン・面 14px（アプリのトースト角丸と同値）。</p>
+</div>
+</body>
+</html>

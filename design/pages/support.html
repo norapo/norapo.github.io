@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>サポート — Norapo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #221F1B;
+  --surface: #2C2823;
+  --accent: #ECE4D4;
+  --dest: #D8D0C0;
+  --sub: #C2B9A4;
+  --faint: #6E6654;
+  --font-jp: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --font-num: "Instrument Sans", -apple-system, sans-serif;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--sub);
+  font-family: var(--font-jp);
+  font-weight: 400;
+  line-height: 2;
+  letter-spacing: 0.04em;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 40rem; margin: 0 auto; padding: 0 1.5rem; }
+a { color: var(--dest); text-decoration: underline; text-underline-offset: 0.25em; text-decoration-thickness: 1px; }
+a:hover { color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+.site-header { padding: 1.5rem 0; }
+.site-header .wrap { display: flex; align-items: baseline; justify-content: space-between; }
+.wordmark { font-family: var(--font-num); font-weight: 600; font-size: 1.05rem; letter-spacing: 0.02em; color: var(--dest); text-decoration: none; }
+.site-nav { display: flex; gap: 1.25rem; font-size: 0.8rem; }
+.site-nav a { text-decoration: none; color: var(--sub); }
+.site-nav a:hover { color: var(--accent); }
+
+main { padding: 3rem 0 4rem; }
+h1 { color: var(--accent); font-weight: 700; font-size: 1.5rem; letter-spacing: 0.08em; line-height: 1.7; margin: 0 0 3rem; }
+h2 { color: var(--dest); font-weight: 700; font-size: 1.05rem; letter-spacing: 0.08em; margin: 3rem 0 1.5rem; padding-top: 2.5rem; border-top: 1px solid var(--faint); }
+h2.first { border-top: none; padding-top: 0; margin-top: 0; }
+p { margin: 0 0 1.2em; font-size: 0.95rem; }
+
+/* 使い方: 操作手順（アプリ内ガイドの文言と一致させる） */
+.steps { list-style: none; margin: 0; padding: 0; }
+.steps li { padding: 1.4rem 0; display: flex; gap: 1.4rem; align-items: baseline; }
+.steps li + li { border-top: 1px solid var(--faint); }
+.steps .n { font-family: var(--font-num); font-weight: 600; font-size: 1.3rem; color: var(--faint); min-width: 1.4em; }
+.steps h3 { color: var(--dest); font-weight: 500; font-size: 0.98rem; margin: 0 0 0.3rem; }
+.steps p { margin: 0; font-size: 0.88rem; }
+
+/* FAQ */
+.faq { margin: 0; }
+.faq dt { color: var(--dest); font-weight: 500; font-size: 0.98rem; margin: 2rem 0 0.5rem; }
+.faq dt::before { content: "Q. "; color: var(--faint); font-family: var(--font-num); font-weight: 600; }
+.faq dd { margin: 0; font-size: 0.92rem; }
+
+/* 手順の引用ブロック（メニュー操作） */
+.path {
+  background: var(--surface);
+  border-radius: 14px;
+  padding: 1rem 1.4rem;
+  font-size: 0.9rem;
+  color: var(--dest);
+  margin: 1rem 0;
+}
+
+.button-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.8rem 1.6rem;
+  border: 1px solid var(--faint);
+  border-radius: 14px;
+  color: var(--dest);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+.button-link:hover { border-color: var(--sub); color: var(--accent); }
+
+footer { border-top: 1px solid var(--faint); padding: 2.5rem 0 3.5rem; font-size: 0.8rem; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; }
+footer a { text-decoration: none; color: var(--sub); }
+footer a:hover { color: var(--accent); }
+footer .copyright { color: var(--faint); margin-left: auto; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="#">Norapo</a>
+    <nav class="site-nav" aria-label="サイト内">
+      <a href="#howto">使い方</a>
+      <a href="#faq">よくある質問</a>
+      <a href="#feedback">フィードバック</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <h1>サポート</h1>
+
+    <h2 id="howto" class="first">使い方</h2>
+    <ol class="steps">
+      <li>
+        <span class="n" aria-hidden="true">1</span>
+        <div>
+          <h3>地図アプリで行きたい場所を見つける</h3>
+          <p>Google マップでも、Apple のマップでも。いつもどおり検索します。</p>
+        </div>
+      </li>
+      <li>
+        <span class="n" aria-hidden="true">2</span>
+        <div>
+          <h3>共有メニューから Norapo を選ぶ</h3>
+          <p>場所の詳細画面で共有ボタンを押し、Norapo を選ぶと目的地に設定されます。</p>
+        </div>
+      </li>
+      <li>
+        <span class="n" aria-hidden="true">3</span>
+        <div>
+          <h3>あとは矢印と距離だけ。寄り道も自由</h3>
+          <p>iPhone と Apple Watch に方向と距離が表示されます。目的地の 30m 以内に近づくと、到着をお知らせします。</p>
+        </div>
+      </li>
+    </ol>
+
+    <h2 id="faq">よくある質問</h2>
+    <dl class="faq">
+      <dt>矢印の向きがずれている気がします</dt>
+      <dd>コンパスは周囲の磁気（車・鉄骨・電子機器など）の影響を受けることがあります。腕を水平にして数歩あるくと安定します。精度が低いあいだは矢印のかわりに調整中の表示が出ます。</dd>
+
+      <dt>Apple Watch に目的地が届きません</dt>
+      <dd>iPhone で Norapo を開いたまま数秒待ってください。iPhone と Watch の接続（Bluetooth）が切れている場合は近づけてから Watch 側の Norapo を開き直すと同期されます。</dd>
+
+      <dt>目的地の設定に失敗します</dt>
+      <dd>
+        <p>「通信できませんでした」の場合は電波の良い場所で再試行してください。「場所を特定できませんでした」の場合は地図アプリからもう一度共有し直すと解決することがあります。</p>
+        <p>それでも失敗が続くときは診断ログを添えてフィードバックをお送りください。原因調査にとても役立ちます。</p>
+        <div class="path">iPhone の Norapo で ••• メニュー → 診断ログ → すべてコピー → フォームに貼り付け</div>
+      </dd>
+
+      <dt>現在地はどこかに送信されますか？</dt>
+      <dd>送信されません。方向と距離の計算は端末の中で完結します。詳しくは<a href="#">プライバシーポリシー</a>をご覧ください。</dd>
+
+      <dt>対応機種を教えてください</dt>
+      <dd>iOS 18 以上の iPhone と、watchOS 11 以上の Apple Watch に対応しています。Apple Watch がなくても、iPhone 単体で使えます。</dd>
+    </dl>
+
+    <h2 id="feedback">フィードバック</h2>
+    <p>不具合の報告も、要望も、感想も歓迎します。返信をご希望の場合はフォームにメールアドレスを記入してください（任意）。</p>
+    <a class="button-link" href="#">フィードバックフォームを開く</a>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="#">サポート</a>
+    <a href="#">プライバシーポリシー</a>
+    <a href="#">フィードバック</a>
+    <a href="#">開発者を支援する</a>
+    <span class="copyright">© 2026 Norapo</span>
+  </div>
+</footer>
+
+</body>
+</html>
