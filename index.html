@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
+<script src="assets/hero.js" defer></script>
 </head>
 <body class="page-home">
 
@@ -24,41 +25,71 @@
 
 <main>
   <div class="hero wrap">
-    <div class="guidance" role="img" aria-label="Norapo の案内画面。目的地名の下に矢印と距離だけが表示される">
-      <p class="dest-name">喫茶 こもれび</p>
-      <svg class="hero-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="-2.25 -2.25 70.5 96.5" aria-hidden="true">
-        <path d="M33 0 L66 92 L33 66.2 L0 92 Z" fill="currentColor" stroke="currentColor" stroke-width="4.5" stroke-linejoin="round"/>
-      </svg>
-      <p class="distance">640<span class="unit">m</span></p>
+    <div class="hero-visual">
+    <svg class="hero-mock" viewBox="0 0 250 520" role="img" aria-label="Norapo の案内画面。目的地名の下に矢印と距離だけが表示される">
+      <rect class="f-bezel" x="0" y="0" width="250" height="520" rx="46"/>
+      <rect class="f-bg" x="10" y="10" width="230" height="500" rx="38"/>
+      <text class="ms-num f-dest" x="30" y="49" font-size="13">Norapo</text>
+      <circle class="s-faint" cx="206" cy="44" r="14" stroke-width="1"/>
+      <circle class="f-sub" cx="201" cy="44" r="1.3"/>
+      <circle class="f-sub" cx="206" cy="44" r="1.3"/>
+      <circle class="f-sub" cx="211" cy="44" r="1.3"/>
+      <text id="hero-dest" class="ms-jp f-dest" x="125" y="92" font-size="13.5" text-anchor="middle">喫茶 よりみち</text>
+      <g transform="translate(125, 240)">
+        <g id="hero-arrow" class="hero-rot settle">
+          <path class="kite" d="M33 0 L66 92 L33 66.2 L0 92 Z" transform="scale(0.97) translate(-33, -46)"/>
+        </g>
+      </g>
+      <text id="hero-distance" class="ms-num f-accent" x="125" y="335" font-size="29" text-anchor="middle">640<tspan class="f-sub" font-size="16">m</tspan></text>
+      <text class="ms-jp f-sub" x="125" y="484" font-size="11.5" text-anchor="middle">目的地を変更</text>
+    </svg>
+    <button id="hero-toggle" class="hero-toggle" type="button" data-playing="true" aria-label="目的地の切り替えアニメーションを一時停止">
+      <svg class="icon-pause" viewBox="0 0 16 16" aria-hidden="true"><rect x="3.5" y="2.5" width="3.2" height="11"/><rect x="9.3" y="2.5" width="3.2" height="11"/></svg>
+      <svg class="icon-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 2.6 L13.4 8 L5 13.4 Z"/></svg>
+    </button>
     </div>
     <h1>地図を見なくても、<br>行きたいところへ。</h1>
-    <p class="lede">Norapo（ノラポ）は目的地への方向と距離だけを iPhone と Apple&nbsp;Watch に表示する矢印ナビです。</p>
+    <p class="lede">Norapo（ノラポ）は目的地への方向と距離だけを iPhone と Apple&nbsp;Watch に表示する矢印ナビアプリです。</p>
     <a class="store-note" href="#">App Store で公開準備中</a>
   </div>
 
+  <section>
+    <div class="wrap">
+      <h2>こんなときに</h2>
+      <ul class="scenes">
+        <li>旅先で地図を何度も見ずにまち歩きを楽しみたい</li>
+        <li>友人との会話を止めずに目的の店へ向かいたい</li>
+        <li>散歩の行き先だけ決めて、道は気分で選びたい</li>
+        <li>スマホの画面から少し離れて歩きたい</li>
+        <li>地図を読むのが苦手だけど、目的地にたどり着きたい</li>
+      </ul>
+    </div>
+  </section>
+
   <section id="howto">
     <div class="wrap">
-      <h2>使い方は共有するだけ</h2>
+      <h2>使い方</h2>
+      <p class="section-lede">地図アプリから目的地を共有するだけ。</p>
       <ol class="steps">
         <li>
           <span class="n" aria-hidden="true">1</span>
           <div>
-            <h3>地図アプリで行きたい場所を見つける</h3>
-            <p>Google マップでも、Apple のマップでも。いつもどおり探します。</p>
+            <h3>地図アプリで目的地を選択する</h3>
+            <p>使い慣れた Google マップや Apple のマップをそのまま使えます。</p>
           </div>
         </li>
         <li>
           <span class="n" aria-hidden="true">2</span>
           <div>
             <h3>共有メニューから Norapo を選ぶ</h3>
-            <p>それだけでその場所が目的地になります。</p>
+            <p>Norapo に目的地が設定されます。</p>
           </div>
         </li>
         <li>
           <span class="n" aria-hidden="true">3</span>
           <div>
-            <h3>あとは矢印と距離だけ。寄り道も自由</h3>
-            <p>スマホをしまって歩けます。Apple Watch がそっと方向を教えてくれます。</p>
+            <h3>目的地までの距離と方向が表示される</h3>
+            <p>地図を見なくても目的地へ近づけます。</p>
           </div>
         </li>
       </ol>
@@ -67,14 +98,78 @@
 
   <section>
     <div class="wrap">
-      <h2>地図を持たないということ</h2>
-      <p>Norapo は地図も最短ルートも表示しません。寄り道も回り道も自由なまま、それでもちゃんとたどり着ける。いまここの風景と会話に散歩やおでかけの時間を返すための道具です。</p>
-      <ul class="honest">
-        <li>無料・広告なし</li>
-        <li>アカウント登録なし</li>
-        <li>現在地を外部に送らない</li>
-        <li>Apple Watch 単体で方向を計算</li>
+      <h2>画面を見続けなくてもいい</h2>
+      <ul class="ways">
+        <li>
+          <div class="device">
+            <svg class="mini-mock" viewBox="0 0 132 276" aria-hidden="true">
+              <rect class="f-bezel" x="0" y="0" width="132" height="276" rx="26"/>
+              <rect class="f-bg" x="6" y="6" width="120" height="264" rx="21"/>
+              <text class="ms-jp f-dest" x="66" y="42" font-size="8" text-anchor="middle">喫茶 こもれび</text>
+              <g transform="translate(66, 128) rotate(24) scale(0.52) translate(-33, -46)">
+                <path class="kite" d="M33 0 L66 92 L33 66.2 L0 92 Z"/>
+              </g>
+              <text class="ms-num f-accent" x="66" y="184" font-size="16" text-anchor="middle">640<tspan class="f-sub" font-size="9">m</tspan></text>
+            </svg>
+          </div>
+          <div>
+            <h3>iPhoneアプリ</h3>
+            <p>方向と距離だけのシンプルな表示。パッと見ただけで方向が分かります。</p>
+          </div>
+        </li>
+        <li>
+          <div class="device">
+            <svg class="mini-mock" viewBox="0 0 132 276" aria-hidden="true">
+              <rect class="f-bezel" x="0" y="0" width="132" height="276" rx="26"/>
+              <rect class="f-bg" x="6" y="6" width="120" height="264" rx="21"/>
+              <text class="ms-num f-dest" x="66" y="47" font-size="19" text-anchor="middle">9:41</text>
+              <rect class="f-surface" x="14" y="64" width="104" height="36" rx="10"/>
+              <g transform="translate(30, 82) rotate(24) scale(0.22) translate(-33, -46)">
+                <path class="kite" d="M33 0 L66 92 L33 66.2 L0 92 Z"/>
+              </g>
+              <text class="ms-num f-accent" x="44" y="80" font-size="9.5">640<tspan class="f-sub" font-size="6">m</tspan></text>
+              <text class="ms-jp f-dest" x="44" y="93" font-size="7">喫茶 こもれび</text>
+            </svg>
+          </div>
+          <div>
+            <h3>ロック画面</h3>
+            <p>ロックを解除しなくても距離と方向が分かります。</p>
+          </div>
+        </li>
+        <li>
+          <div class="device">
+            <svg class="watch-mock" viewBox="0 0 128 162" aria-hidden="true">
+              <rect class="f-bezel" x="0" y="0" width="128" height="162" rx="34"/>
+              <rect class="f-bg" x="7" y="7" width="114" height="148" rx="28"/>
+              <text class="ms-jp f-dest" x="64" y="48" font-size="8" text-anchor="middle">喫茶 こもれび</text>
+              <g transform="translate(64, 80) rotate(24) scale(0.42) translate(-33, -46)">
+                <path class="kite" d="M33 0 L66 92 L33 66.2 L0 92 Z"/>
+              </g>
+              <text class="ms-num f-accent" x="64" y="126" font-size="15" text-anchor="middle">640<tspan class="f-sub" font-size="8.5">m</tspan></text>
+            </svg>
+          </div>
+          <div>
+            <h3>Apple Watch</h3>
+            <p>iPhoneアプリと自動連携。スマホをしまったままでも距離と方向が分かります。</p>
+          </div>
+        </li>
       </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>大切にしていること</h2>
+      <p>Norapo は個人が開発している無料のアプリです。課金も広告もありません。余計な要素を増やさず、シンプルで使いやすいアプリであり続けたいと思っています。</p>
+      <ul class="honest">
+        <li>無料・アプリ内課金なし</li>
+        <li>広告なし</li>
+        <li>アカウント登録なし</li>
+        <li>位置情報の外部送信なし</li>
+      </ul>
+      <p>Norapo で散歩やおでかけが少し豊かになったと感じたら、散歩あとのコーヒー一杯の感覚で応援していただけると励みになります。</p>
+      <a class="button-link" href="donate/">開発者を支援する</a>
+      <p class="closing">地図を見ているあいだに通り過ぎてしまう何気ない一瞬を逃さないように。使った人の中に町の様子や季節の変化に気づける余白が生まれたら嬉しいです。</p>
     </div>
   </section>
 </main>
