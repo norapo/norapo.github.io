@@ -1,33 +1,7 @@
-<!doctype html>
-<html lang="ja">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>よくある質問 — Norapo</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/site.css">
-<!-- partial:head-icons -->
-<meta name="theme-color" content="#221F1B">
-<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
-<link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
-<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-<!-- /partial:head-icons -->
-</head>
-<body class="page-doc page-support">
-
-<!-- partial:header -->
-<header class="site-header">
-  <div class="wrap">
-    <a class="wordmark" href="../"><img class="mark" src="../assets/icon.svg" alt="" width="26" height="26">Norapo</a>
-    <nav class="site-nav" aria-label="サイト内">
-      <a aria-current="page" href="../support/">よくある質問</a>
-      <a href="../donate/">開発者を支援する</a>
-    </nav>
-  </div>
-</header>
-<!-- /partial:header -->
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="よくある質問 — Norapo" bodyClass="page-doc page-support" root="../" current="support">
 
 <main>
   <div class="wrap">
@@ -66,17 +40,4 @@
   </div>
 </main>
 
-<!-- partial:footer -->
-<footer>
-  <div class="wrap">
-    <a aria-current="page" href="../support/">よくある質問</a>
-    <a href="../privacy/">プライバシーポリシー</a>
-    <a href="../feedback/">フィードバック</a>
-    <a href="../donate/">開発者を支援する</a>
-    <span class="copyright">© 2026 Norapo</span>
-  </div>
-</footer>
-<!-- /partial:footer -->
-
-</body>
-</html>
+</Base>

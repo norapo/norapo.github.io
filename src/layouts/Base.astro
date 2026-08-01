@@ -1,0 +1,40 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  bodyClass: string;
+  root: string;
+  current?: 'support' | 'privacy' | 'feedback' | 'donate';
+  withHero?: boolean;
+}
+const { title, bodyClass, root, current, withHero = false } = Astro.props;
+const cssHref = root === './' ? 'assets/site.css' : `${root}assets/site.css`;
+---
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href={cssHref}>
+<meta name="theme-color" content="#221F1B">
+<link rel="icon" href={`${root}assets/icon.svg`} type="image/svg+xml">
+<link rel="icon" href={`${root}assets/favicon-32.png`} type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href={`${root}assets/apple-touch-icon.png`}>
+{withHero && <script src="assets/hero.js" defer></script>}
+</head>
+<body class={bodyClass}>
+
+<Header root={root} current={current} />
+
+<slot />
+
+<Footer root={root} current={current} />
+
+</body>
+</html>
