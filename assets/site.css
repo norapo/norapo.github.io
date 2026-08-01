@@ -1,0 +1,158 @@
+/* Norapo site 共有スタイル
+   カラートークンの正: norapo 本体リポジトリ design/01-design-tokens.md */
+
+:root {
+  --bg: #221F1B;
+  --surface: #2C2823;
+  --accent: #ECE4D4;
+  --dest: #D8D0C0;
+  --sub: #C2B9A4;
+  --faint: #6E6654;
+  --font-jp: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --font-num: "Instrument Sans", -apple-system, sans-serif;
+}
+
+/* ベース */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--sub);
+  font-family: var(--font-jp);
+  font-weight: 400;
+  line-height: 2;
+  letter-spacing: 0.04em;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 40rem; margin: 0 auto; padding: 0 1.5rem; }
+a { color: var(--dest); text-decoration: underline; text-underline-offset: 0.25em; text-decoration-thickness: 1px; }
+a:hover { color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+p { margin: 0 0 1.2em; font-size: 0.95rem; }
+
+/* ヘッダー */
+.site-header { padding: 1.5rem 0; }
+.site-header .wrap { display: flex; align-items: baseline; justify-content: space-between; }
+.wordmark { font-family: var(--font-num); font-weight: 600; font-size: 1.05rem; letter-spacing: 0.02em; color: var(--dest); text-decoration: none; }
+.site-nav { display: flex; gap: 1.25rem; font-size: 0.8rem; }
+.site-nav a { text-decoration: none; color: var(--sub); }
+.site-nav a:hover { color: var(--accent); }
+
+/* フッター */
+footer { border-top: 1px solid var(--faint); padding: 2.5rem 0 3.5rem; font-size: 0.8rem; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; }
+footer a { text-decoration: none; color: var(--sub); }
+footer a:hover { color: var(--accent); }
+footer .copyright { color: var(--faint); margin-left: auto; }
+
+/* ===== ホーム（.page-home） ===== */
+
+/* ヒーロー: 案内画面の文法（目的地名 → 矢印 → 距離） */
+.hero { padding: 4.5rem 0 5rem; text-align: center; }
+.guidance { display: flex; flex-direction: column; align-items: center; gap: 1.6rem; }
+.guidance .dest-name { color: var(--dest); font-weight: 500; font-size: 0.95rem; margin: 0; }
+.hero-arrow { width: 84px; height: auto; color: var(--accent); transform: rotate(24deg); animation: settle 1.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes settle { from { transform: rotate(-22deg); } to { transform: rotate(24deg); } }
+@media (prefers-reduced-motion: reduce) { .hero-arrow { animation: none; } }
+.distance {
+  font-family: var(--font-num);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  font-size: 2.5rem;
+  color: var(--accent);
+  line-height: 1;
+  margin: 0;
+}
+.distance .unit { font-size: 50%; font-weight: 500; color: var(--sub); margin-left: 0.15em; }
+.hero h1 {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 4.5vw, 1.9rem);
+  line-height: 1.7;
+  letter-spacing: 0.06em;
+  margin: 3.5rem 0 1rem;
+}
+.hero .lede { max-width: 34rem; margin: 0 auto; font-size: 0.95rem; }
+.store-note {
+  display: inline-block;
+  margin-top: 2.5rem;
+  padding: 0.8rem 1.6rem;
+  border: 1px solid var(--faint);
+  border-radius: 14px;
+  color: var(--sub);
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+.store-note:hover { border-color: var(--sub); color: var(--accent); }
+
+/* セクション共通 */
+.page-home section { padding: 3.5rem 0; border-top: 1px solid var(--faint); }
+.page-home h2 { color: var(--dest); font-weight: 700; font-size: 1.1rem; letter-spacing: 0.08em; margin: 0 0 2rem; }
+
+/* 誠実ライン */
+.honest { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem 2rem; font-size: 0.92rem; }
+.honest li { color: var(--dest); padding-left: 1.2em; position: relative; }
+.honest li::before { content: ""; position: absolute; left: 0; top: 0.75em; width: 0.45em; height: 1px; background: var(--faint); }
+@media (max-width: 480px) { .honest { grid-template-columns: 1fr; } }
+
+/* ===== 記事ページ共通（.page-doc: support / privacy / donate） ===== */
+.page-doc main { padding: 3rem 0 4rem; }
+.page-doc h1 { color: var(--accent); font-weight: 700; font-size: 1.5rem; letter-spacing: 0.08em; line-height: 1.7; margin: 0 0 3rem; }
+.page-doc h2 { color: var(--dest); font-weight: 700; font-size: 1.05rem; letter-spacing: 0.08em; margin: 3rem 0 1rem; padding-top: 2.5rem; border-top: 1px solid var(--faint); }
+.page-doc h2.first { border-top: none; padding-top: 0; margin-top: 0; }
+.page-support h2 { margin-bottom: 1.5rem; }
+.page-privacy h1 { margin-bottom: 0.5rem; }
+.meta { color: var(--faint); font-size: 0.8rem; margin: 0 0 3rem; }
+.lede { color: var(--dest); }
+.page-privacy ul { margin: 0 0 1.2em; padding-left: 1.3em; }
+.page-privacy li { margin-bottom: 0.4em; font-size: 0.95rem; }
+.page-privacy li::marker { color: var(--faint); }
+
+/* ===== 共有コンポーネント ===== */
+
+/* 使い方: 操作手順（アプリ内ガイドの文言と一致させる） */
+.steps { list-style: none; margin: 0; padding: 0; }
+.steps li { padding: 1.4rem 0; display: flex; gap: 1.4rem; align-items: baseline; }
+.steps li + li { border-top: 1px solid var(--faint); }
+.steps .n { font-family: var(--font-num); font-weight: 600; font-size: 1.3rem; color: var(--faint); min-width: 1.4em; }
+.steps h3 { color: var(--dest); font-weight: 500; font-size: 0.98rem; margin: 0 0 0.3rem; }
+.steps p { margin: 0; font-size: 0.88rem; }
+
+/* FAQ */
+.faq { margin: 0; }
+.faq dt { color: var(--dest); font-weight: 500; font-size: 0.98rem; margin: 2rem 0 0.5rem; }
+.faq dt::before { content: "Q. "; color: var(--faint); font-family: var(--font-num); font-weight: 600; }
+.faq dd { margin: 0; font-size: 0.92rem; }
+
+/* 手順の引用ブロック（メニュー操作） */
+.path {
+  background: var(--surface);
+  border-radius: 14px;
+  padding: 1rem 1.4rem;
+  font-size: 0.9rem;
+  color: var(--dest);
+  margin: 1rem 0;
+}
+
+/* ボタン風リンク */
+.button-link {
+  display: inline-block;
+  padding: 0.8rem 1.6rem;
+  border: 1px solid var(--faint);
+  border-radius: 14px;
+  color: var(--dest);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+.button-link:hover { border-color: var(--sub); color: var(--accent); }
+.page-support .button-link { margin-top: 0.5rem; }
+
+/* 小さなゴースト矢印: 使い方ガイド装飾と同じ 24° 固定・faint */
+.ghost-arrow { width: 44px; height: auto; color: var(--faint); transform: rotate(24deg); margin: 0 0 2rem; }
+
+/* 支援導線: OFUSE と note を同格に並べる */
+.support-links { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.5rem; }
+.support-links .hint { flex-basis: 100%; font-size: 0.8rem; color: var(--faint); margin: 0; }
+.note { color: var(--faint); font-size: 0.85rem; }

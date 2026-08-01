@@ -7,94 +7,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg: #221F1B;
-  --surface: #2C2823;
-  --accent: #ECE4D4;
-  --dest: #D8D0C0;
-  --sub: #C2B9A4;
-  --faint: #6E6654;
-  --font-jp: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
-  --font-num: "Instrument Sans", -apple-system, sans-serif;
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--sub);
-  font-family: var(--font-jp);
-  font-weight: 400;
-  line-height: 2;
-  letter-spacing: 0.04em;
-  -webkit-font-smoothing: antialiased;
-}
-.wrap { max-width: 40rem; margin: 0 auto; padding: 0 1.5rem; }
-a { color: var(--dest); text-decoration: underline; text-underline-offset: 0.25em; text-decoration-thickness: 1px; }
-a:hover { color: var(--accent); }
-a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
-
-.site-header { padding: 1.5rem 0; }
-.site-header .wrap { display: flex; align-items: baseline; justify-content: space-between; }
-.wordmark { font-family: var(--font-num); font-weight: 600; font-size: 1.05rem; letter-spacing: 0.02em; color: var(--dest); text-decoration: none; }
-.site-nav { display: flex; gap: 1.25rem; font-size: 0.8rem; }
-.site-nav a { text-decoration: none; color: var(--sub); }
-.site-nav a:hover { color: var(--accent); }
-
-main { padding: 3rem 0 4rem; }
-h1 { color: var(--accent); font-weight: 700; font-size: 1.5rem; letter-spacing: 0.08em; line-height: 1.7; margin: 0 0 3rem; }
-h2 { color: var(--dest); font-weight: 700; font-size: 1.05rem; letter-spacing: 0.08em; margin: 3rem 0 1.5rem; padding-top: 2.5rem; border-top: 1px solid var(--faint); }
-h2.first { border-top: none; padding-top: 0; margin-top: 0; }
-p { margin: 0 0 1.2em; font-size: 0.95rem; }
-
-/* 使い方: 操作手順（アプリ内ガイドの文言と一致させる） */
-.steps { list-style: none; margin: 0; padding: 0; }
-.steps li { padding: 1.4rem 0; display: flex; gap: 1.4rem; align-items: baseline; }
-.steps li + li { border-top: 1px solid var(--faint); }
-.steps .n { font-family: var(--font-num); font-weight: 600; font-size: 1.3rem; color: var(--faint); min-width: 1.4em; }
-.steps h3 { color: var(--dest); font-weight: 500; font-size: 0.98rem; margin: 0 0 0.3rem; }
-.steps p { margin: 0; font-size: 0.88rem; }
-
-/* FAQ */
-.faq { margin: 0; }
-.faq dt { color: var(--dest); font-weight: 500; font-size: 0.98rem; margin: 2rem 0 0.5rem; }
-.faq dt::before { content: "Q. "; color: var(--faint); font-family: var(--font-num); font-weight: 600; }
-.faq dd { margin: 0; font-size: 0.92rem; }
-
-/* 手順の引用ブロック（メニュー操作） */
-.path {
-  background: var(--surface);
-  border-radius: 14px;
-  padding: 1rem 1.4rem;
-  font-size: 0.9rem;
-  color: var(--dest);
-  margin: 1rem 0;
-}
-
-.button-link {
-  display: inline-block;
-  margin-top: 0.5rem;
-  padding: 0.8rem 1.6rem;
-  border: 1px solid var(--faint);
-  border-radius: 14px;
-  color: var(--dest);
-  font-size: 0.9rem;
-  text-decoration: none;
-}
-.button-link:hover { border-color: var(--sub); color: var(--accent); }
-
-footer { border-top: 1px solid var(--faint); padding: 2.5rem 0 3.5rem; font-size: 0.8rem; }
-footer .wrap { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; }
-footer a { text-decoration: none; color: var(--sub); }
-footer a:hover { color: var(--accent); }
-footer .copyright { color: var(--faint); margin-left: auto; }
-</style>
+<link rel="stylesheet" href="../assets/site.css">
 </head>
-<body>
+<body class="page-doc page-support">
 
 <header class="site-header">
   <div class="wrap">
-    <a class="wordmark" href="#">Norapo</a>
+    <a class="wordmark" href="../">Norapo</a>
     <nav class="site-nav" aria-label="サイト内">
       <a href="#howto">使い方</a>
       <a href="#faq">よくある質問</a>
@@ -148,7 +67,7 @@ footer .copyright { color: var(--faint); margin-left: auto; }
       </dd>
 
       <dt>現在地はどこかに送信されますか？</dt>
-      <dd>送信されません。方向と距離の計算は端末の中で完結します。詳しくは<a href="#">プライバシーポリシー</a>をご覧ください。</dd>
+      <dd>送信されません。方向と距離の計算は端末の中で完結します。詳しくは<a href="../privacy/">プライバシーポリシー</a>をご覧ください。</dd>
 
       <dt>対応機種を教えてください</dt>
       <dd>iOS 18 以上の iPhone と、watchOS 11 以上の Apple Watch に対応しています。Apple Watch がなくても、iPhone 単体で使えます。</dd>
@@ -162,10 +81,10 @@ footer .copyright { color: var(--faint); margin-left: auto; }
 
 <footer>
   <div class="wrap">
-    <a href="#">サポート</a>
-    <a href="#">プライバシーポリシー</a>
+    <a href="../support/">サポート</a>
+    <a href="../privacy/">プライバシーポリシー</a>
     <a href="#">フィードバック</a>
-    <a href="#">開発者を支援する</a>
+    <a href="../donate/">開発者を支援する</a>
     <span class="copyright">© 2026 Norapo</span>
   </div>
 </footer>
