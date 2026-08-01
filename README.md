@@ -8,11 +8,16 @@
 
 ```
 index.html              ホーム
-support/index.html      /support/   サポート（使い方・FAQ・フィードバック）
+support/index.html      /support/   サポート（よくある質問）
+feedback/index.html     /feedback/  フィードバック
 privacy/index.html      /privacy/   プライバシーポリシー
 donate/index.html       /donate/    開発者を支援する
 assets/site.css         共有スタイル（カラートークン + 全コンポーネント）
+assets/hero.js          ホームのヒーローアニメーション
+assets/icon.svg         アプリアイコン（角丸込み。ヘッダー・favicon 兼用）
 assets/img/             画像（スクショ・OGP 用。現状は空）
+partials/               ヘッダー・フッター・favicon リンクの正本
+scripts/sync-partials.py  partials を各ページへ反映するスクリプト
 design/foundation/      デザイン参照（カラー・タイポグラフィの見本ページ）
 .nojekyll               GitHub Pages の Jekyll 処理をスキップ
 ```
@@ -35,7 +40,8 @@ python3 -m http.server 8000
 ## 編集の約束
 
 - **スタイルは `assets/site.css` のみ**に書く。ページ内 `<style>` は増やさない
-- **ヘッダー・フッターは全ページ手動同期**（4 ページなので許容。共通部分を変えたら全ページ確認）
+- **ヘッダー・フッター・favicon リンクの正本は `partials/`**。編集したら `python3 scripts/sync-partials.py` を実行して各ページへ反映する（各ページの `<!-- partial:name -->` ブロックの中身は直接編集しない）。新規ページを追加したらスクリプトの `PAGES` にも追記する
+- アプリアイコンの正本は norapo 本体の `NorapoApp/AppIcon.icon`。変えたら `assets/icon.svg`・`assets/favicon-32.png`・`assets/apple-touch-icon.png` を作り直す
 - 文言はストア掲載文・アプリ内文言と整合させる。正本は norapo 本体リポジトリの
   `docs/release-plan/store-listing-draft.md`（ストア文言）と `docs/release-plan/positioning.md`（訴求の骨格・文体規則）
 - カラートークンの正は norapo 本体の `design/01-design-tokens.md`

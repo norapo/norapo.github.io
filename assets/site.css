@@ -33,11 +33,13 @@ p { margin: 0 0 1.2em; font-size: 0.95rem; }
 
 /* ヘッダー */
 .site-header { padding: 1.5rem 0; }
-.site-header .wrap { display: flex; align-items: baseline; justify-content: space-between; }
-.wordmark { font-family: var(--font-num); font-weight: 600; font-size: 1.05rem; letter-spacing: 0.02em; color: var(--dest); text-decoration: none; }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; }
+.wordmark { display: flex; align-items: center; gap: 0.55rem; font-family: var(--font-num); font-weight: 600; font-size: 1.05rem; letter-spacing: 0.02em; color: var(--dest); text-decoration: none; }
+.wordmark .mark { display: block; }
 .site-nav { display: flex; gap: 1.25rem; font-size: 0.8rem; }
 .site-nav a { text-decoration: none; color: var(--sub); }
 .site-nav a:hover { color: var(--accent); }
+.site-nav a[aria-current="page"] { color: var(--dest); }
 
 /* フッター */
 footer { border-top: 1px solid var(--faint); padding: 2.5rem 0 3.5rem; font-size: 0.8rem; }
