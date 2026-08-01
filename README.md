@@ -44,7 +44,7 @@ python3 -m http.server 8000
 
 - **スタイルは `assets/site.css` のみ**に書く。ページ内 `<style>` は増やさない
 - **ヘッダー・フッター・favicon リンクの正本は `partials/`**。編集したら `python3 scripts/sync-partials.py` を実行して各ページへ反映する（各ページの `<!-- partial:name -->` ブロックの中身は直接編集しない）。新規ページを追加したらスクリプトの `PAGES` にも追記する
-- アプリアイコンの正本は norapo 本体の `NorapoApp/AppIcon.icon`。変えたら `assets/icon.svg`・`assets/favicon-32.png`・`assets/apple-touch-icon.png` を作り直す
+- アプリアイコンの正本は norapo 本体の `NorapoApp/AppIcon.icon`。変えたら `assets/icon.svg`・`assets/favicon-32.png`・`assets/apple-touch-icon.png` を作り直す。PNG 化は `qlmanage -t -s <サイズ> <svg> -o <出力先>`（ImageMagick は SVG の transform を崩すので使わない。apple-touch-icon は `rx="0"` にした正方形版から生成）
 - 文言はストア掲載文・アプリ内文言と整合させる。正本は norapo 本体リポジトリの
   `docs/release-plan/store-listing-draft.md`（ストア文言）と `docs/release-plan/positioning.md`（訴求の骨格・文体規則）
 - カラートークンの正は norapo 本体の `design/01-design-tokens.md`
