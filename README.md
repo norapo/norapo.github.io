@@ -12,15 +12,18 @@ support/index.html      /support/   サポート（よくある質問）
 feedback/index.html     /feedback/  フィードバック
 privacy/index.html      /privacy/   プライバシーポリシー
 donate/index.html       /donate/    開発者を支援する
+404.html                見つからないページ（自己完結・絶対パス。公開 URL 変更時に要更新）
 assets/site.css         共有スタイル（カラートークン + 全コンポーネント）
 assets/hero.js          ホームのヒーローアニメーション
 assets/icon.svg         アプリアイコン（角丸込み。ヘッダー・favicon 兼用）
 assets/img/             画像（スクショ・OGP 用。現状は空）
-partials/               ヘッダー・フッター・favicon リンクの正本
+partials/               ヘッダー・フッター・head 共通タグの正本
 scripts/sync-partials.py  partials を各ページへ反映するスクリプト
-design/foundation/      デザイン参照（カラー・タイポグラフィの見本ページ）
+scripts/git-hooks/      pre-commit（partials 同期漏れの検知）
 .nojekyll               GitHub Pages の Jekyll 処理をスキップ
 ```
+
+クローン直後に `git config core.hooksPath scripts/git-hooks` を実行する。
 
 ## ローカルプレビュー
 

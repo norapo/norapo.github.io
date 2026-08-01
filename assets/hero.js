@@ -38,6 +38,7 @@
   var INTERVAL_MS = 4000;
   var ROTATE_MS = 900;
   var COUNT_MS = 700;
+  var MAX_CYCLES = 4; // 主張を終えたら自動停止する（再生ボタンでいつでも再開できる）
 
   var nameEl = document.getElementById('hero-dest');
   var arrowEl = document.getElementById('hero-arrow');
@@ -55,18 +56,27 @@
   var currentMeters = DESTS[0].meters;
   var countRaf = 0;
   var playing = !reduceMotion; // reduced-motion ではデフォルト停止
+  var cycles = 0;
+  var timer = 0;
 
   // シャッフル後の先頭を初期表示に反映（アニメーションなし。関数宣言は巻き上げ済み）
   nameEl.textContent = DESTS[0].name;
   renderDistance(currentMeters);
 
-  function setPlaying(next) {
-    playing = next;
-    toggleEl.dataset.playing = String(next);
+  function setPlaying(on) {
+    playing = on;
+    toggleEl.dataset.playing = String(on);
     toggleEl.setAttribute(
       'aria-label',
-      next ? '目的地の切り替えアニメーションを一時停止' : '目的地の切り替えアニメーションを再生'
+      on ? '目的地の切り替えアニメーションを一時停止' : '目的地の切り替えアニメーションを再生'
     );
+    if (on) {
+      cycles = 0;
+      if (!timer) timer = setInterval(next, INTERVAL_MS);
+    } else {
+      clearInterval(timer);
+      timer = 0;
+    }
   }
 
   function format(meters) {
@@ -91,6 +101,12 @@
     var fromMeters = currentMeters;
     var start = performance.now();
     function tick(now) {
+      if (!playing) {
+        // 一時停止されたらカウントは目標値へ即着地させる
+        currentMeters = toMeters;
+        renderDistance(toMeters);
+        return;
+      }
       var t = Math.min(1, (now - start) / COUNT_MS);
       var eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
       renderDistance(fromMeters + (toMeters - fromMeters) * eased);
@@ -130,6 +146,12 @@
     swapName(d.name);
     rotateArrow(d.angle);
     animateDistance(d.meters);
+    if (++cycles >= MAX_CYCLES) {
+      // 進行中のアニメーションが着地してから止める（tick の即着地を発火させない）
+      setTimeout(function () {
+        if (playing) setPlaying(false);
+      }, ROTATE_MS);
+    }
   }
 
   // 初期ロードの settle アニメーション終了後にローテーションを引き継ぐ
@@ -147,7 +169,6 @@
   setPlaying(playing);
   toggleEl.addEventListener('click', function () {
     setPlaying(!playing);
+    if (playing) next(); // 再生ボタンには即座に応える（タイマー位相の残り待ちにしない）
   });
-
-  setInterval(next, INTERVAL_MS);
 })();

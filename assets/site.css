@@ -2,19 +2,23 @@
    カラートークンの正: norapo 本体リポジトリ design/01-design-tokens.md */
 
 :root {
+  color-scheme: dark;
   --bg: #221F1B;
   --surface: #2C2823;
   --accent: #ECE4D4;
   --dest: #D8D0C0;
   --sub: #C2B9A4;
-  --faint: #6E6654;
+  --faint: #6E6654;   /* 罫線・装飾専用（bg 比 2.88:1。テキストには使わない） */
+  --muted: #988E77;   /* 補助テキスト用（bg 比 5.06:1 / surface 比 4.51:1） */
+  --edge: #7A715D;    /* 部品の枠線用（bg 比 3.40:1。WCAG 1.4.11 対応） */
+  --bezel: #0B0B0B;   /* モックのベゼル（本体 aod.bg 流用） */
   --font-jp: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
   --font-num: "Instrument Sans", -apple-system, sans-serif;
 }
 
 /* ベース */
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 body {
   margin: 0;
   background: var(--bg);
@@ -39,14 +43,23 @@ p { margin: 0 0 1.2em; font-size: 0.95rem; }
 .site-nav { display: flex; gap: 1.25rem; font-size: 0.8rem; }
 .site-nav a { text-decoration: none; color: var(--sub); }
 .site-nav a:hover { color: var(--accent); }
-.site-nav a[aria-current="page"] { color: var(--dest); }
+.site-nav a[aria-current="page"],
+footer a[aria-current="page"] {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+  text-decoration-thickness: 1px;
+}
 
 /* フッター */
 footer { border-top: 1px solid var(--faint); padding: 2.5rem 0 3.5rem; font-size: 0.8rem; }
 footer .wrap { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; }
 footer a { text-decoration: none; color: var(--sub); }
 footer a:hover { color: var(--accent); }
-footer .copyright { color: var(--faint); margin-left: auto; }
+footer .copyright { color: var(--muted); margin-left: auto; }
+@media (max-width: 560px) {
+  footer .copyright { margin-left: 0; flex-basis: 100%; margin-top: 0.5rem; }
+}
 
 /* ===== ホーム（.page-home） ===== */
 
@@ -61,20 +74,22 @@ footer .copyright { color: var(--faint); margin-left: auto; }
   margin: 3.5rem 0 1rem;
 }
 .hero .lede { max-width: 34rem; margin: 0 auto; font-size: 0.95rem; }
+/* 公開準備中の表示（App Store 公開時に公式バッジの <a> へ差し替える） */
 .store-note {
   display: inline-block;
-  margin-top: 2.5rem;
+  margin: 2.5rem 0 0;
   padding: 0.8rem 1.6rem;
-  border: 1px solid var(--faint);
+  border: 1px solid var(--edge);
   border-radius: 14px;
   color: var(--sub);
   font-size: 0.85rem;
   text-decoration: none;
 }
-.store-note:hover { border-color: var(--sub); color: var(--accent); }
+.requirements { color: var(--muted); font-size: 0.8rem; margin: 1rem 0 0; }
 
 /* セクション共通 */
 .page-home section { padding: 3.5rem 0; border-top: 1px solid var(--faint); }
+.page-home section[id] { scroll-margin-top: 2rem; }
 .page-home h2 { color: var(--dest); font-weight: 700; font-size: 1.1rem; letter-spacing: 0.08em; margin: 0 0 2rem; }
 .section-lede { color: var(--dest); font-size: 0.95rem; margin: -1.4rem 0 2rem; }
 .closing { margin: 2.5rem 0 0; }
@@ -106,7 +121,7 @@ footer .copyright { color: var(--faint); margin-left: auto; }
   width: 32px;
   height: 32px;
   padding: 0;
-  border: 1px solid var(--faint);
+  border: 1px solid var(--edge);
   border-radius: 50%;
   background: none;
   color: var(--sub);
@@ -119,6 +134,12 @@ footer .copyright { color: var(--faint); margin-left: auto; }
 .hero-toggle svg { width: 11px; height: 11px; fill: currentColor; }
 .hero-toggle[data-playing="true"] .icon-play { display: none; }
 .hero-toggle[data-playing="false"] .icon-pause { display: none; }
+/* モバイル: h1 がファーストビューに入るようモックを縮小（320px 幅でもボタンがはみ出さない） */
+@media (max-width: 560px) {
+  .hero { padding: 2rem 0 3.5rem; }
+  .hero-visual, .hero-mock { width: 190px; }
+  .hero h1 { margin-top: 2rem; }
+}
 .mini-mock { width: 132px; height: auto; display: block; }
 .watch-mock { width: 128px; height: auto; display: block; }
 
@@ -130,7 +151,7 @@ footer .copyright { color: var(--faint); margin-left: auto; }
 .f-sub { fill: var(--sub); }
 .f-bg { fill: var(--bg); }
 .f-surface { fill: var(--surface); }
-.f-bezel { fill: #0B0B0B; }
+.f-bezel { fill: var(--bezel); }
 .s-faint { fill: none; stroke: var(--faint); }
 
 /* こんなときに: シーンの共感リスト */
@@ -147,15 +168,15 @@ footer .copyright { color: var(--faint); margin-left: auto; }
 .ways h3 { color: var(--dest); font-weight: 500; font-size: 0.98rem; margin: 0 0 0.4rem; }
 .ways p { margin: 0; font-size: 0.88rem; }
 @media (max-width: 560px) {
-  .ways li { flex-direction: column; gap: 1.2rem; }
-  .ways .device { flex-basis: auto; }
+  .ways li { flex-direction: column; gap: 1.2rem; align-items: stretch; }
+  .ways .device { flex-basis: auto; align-self: center; }
 }
 
 /* 誠実ライン */
 .honest { list-style: none; margin: 1.6rem 0 1.8rem; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem 2rem; font-size: 0.92rem; }
 .honest li { color: var(--dest); padding-left: 1.2em; position: relative; }
 .honest li::before { content: ""; position: absolute; left: 0; top: 0.75em; width: 0.45em; height: 1px; background: var(--faint); }
-@media (max-width: 480px) { .honest { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .honest { grid-template-columns: 1fr; } }
 
 /* ===== 記事ページ共通（.page-doc: support / privacy / donate） ===== */
 .page-doc main { padding: 3rem 0 4rem; }
@@ -164,7 +185,7 @@ footer .copyright { color: var(--faint); margin-left: auto; }
 .page-doc h2.first { border-top: none; padding-top: 0; margin-top: 0; }
 .page-support h2 { margin-bottom: 1.5rem; }
 .page-privacy h1 { margin-bottom: 0.5rem; }
-.meta { color: var(--faint); font-size: 0.8rem; margin: 0 0 3rem; }
+.meta { color: var(--muted); font-size: 0.8rem; margin: 0 0 3rem; }
 .lede { color: var(--dest); }
 .page-privacy ul { margin: 0 0 1.2em; padding-left: 1.3em; }
 .page-privacy li { margin-bottom: 0.4em; font-size: 0.95rem; }
@@ -176,14 +197,14 @@ footer .copyright { color: var(--faint); margin-left: auto; }
 .steps { list-style: none; margin: 0; padding: 0; }
 .steps li { padding: 1.4rem 0; display: flex; gap: 1.4rem; align-items: baseline; }
 .steps li + li { border-top: 1px solid var(--faint); }
-.steps .n { font-family: var(--font-num); font-weight: 600; font-size: 1.3rem; color: var(--faint); min-width: 1.4em; }
+.steps .n { font-family: var(--font-num); font-weight: 600; font-size: 1.3rem; color: var(--muted); min-width: 1.4em; }
 .steps h3 { color: var(--dest); font-weight: 500; font-size: 0.98rem; margin: 0 0 0.3rem; }
 .steps p { margin: 0; font-size: 0.88rem; }
 
 /* FAQ */
 .faq { margin: 0; }
 .faq dt { color: var(--dest); font-weight: 500; font-size: 0.98rem; margin: 2rem 0 0.5rem; }
-.faq dt::before { content: "Q. "; color: var(--faint); font-family: var(--font-num); font-weight: 600; }
+.faq dt::before { content: "Q. "; color: var(--muted); font-family: var(--font-num); font-weight: 600; }
 .faq dd { margin: 0; font-size: 0.92rem; }
 
 /* 手順の引用ブロック（メニュー操作） */
@@ -200,7 +221,7 @@ footer .copyright { color: var(--faint); margin-left: auto; }
 .button-link {
   display: inline-block;
   padding: 0.8rem 1.6rem;
-  border: 1px solid var(--faint);
+  border: 1px solid var(--edge);
   border-radius: 14px;
   color: var(--dest);
   font-size: 0.9rem;
@@ -214,5 +235,6 @@ footer .copyright { color: var(--faint); margin-left: auto; }
 
 /* 支援導線: OFUSE と note を同格に並べる */
 .support-links { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.5rem; }
-.support-links .hint { flex-basis: 100%; font-size: 0.8rem; color: var(--faint); margin: 0; }
-.note { color: var(--faint); font-size: 0.85rem; }
+.support-links .hint { flex-basis: 100%; font-size: 0.8rem; color: var(--muted); margin: 0; }
+.note { color: var(--muted); font-size: 0.85rem; }
+.page-donate .note { margin-top: 1.5rem; }
