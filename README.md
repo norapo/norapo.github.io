@@ -1,6 +1,6 @@
 # norapo-site
 
-[Norapo](https://github.com/ynoki10)（iPhone + Apple Watch の「方向と距離だけ」散歩ナビ）の公式サイト。
+[Norapo](https://github.com/ynoki10)（目的地への方向と距離だけを iPhone と Apple Watch に表示する矢印ナビアプリ）の公式サイト。
 
 Astro（v7系・最新安定版）製の静的サイト。integrations は追加しない最小構成。
 
