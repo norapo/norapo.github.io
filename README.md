@@ -1,6 +1,8 @@
-# norapo-site
+# norapo.github.io
 
-[Norapo](https://github.com/ynoki10)（目的地への方向と距離だけを iPhone と Apple Watch に表示する矢印ナビアプリ）の公式サイト。
+[Norapo](https://github.com/norapo)（目的地への方向と距離だけを iPhone と Apple Watch に表示する矢印ナビアプリ）の公式サイト。
+
+公開 URL: **https://norapo.github.io/**
 
 Astro（v7系・最新安定版）製の静的サイト。integrations は追加しない最小構成。
 
@@ -23,7 +25,7 @@ public/assets/img/         画像（スクショ・OGP 用。現状は空）
 .github/workflows/deploy.yml   GitHub Pages への自動デプロイ（main への push で発火）
 ```
 
-ページ内リンクは相対パス表記（`../` など）のまま維持しており、GitHub Pages のプロジェクトページ（`/norapo-site/` 配下）でもカスタムドメインでもそのまま動く。
+ページ内リンクは相対パス表記（`../` など）のまま維持しており、ルート配信（現在の Organization サイト）でもサブパス配下でもカスタムドメインでもそのまま動く。404 だけはルート絶対パス。
 
 ## ローカル開発
 
@@ -42,9 +44,9 @@ npm run build
 
 ## 公開（GitHub Pages）
 
-1. GitHub に public リポジトリ `norapo-site` を作成して push
-2. Settings → Pages → Build and deployment → Source: **GitHub Actions**
-3. 以後は main へ push するだけで `.github/workflows/deploy.yml` が自動でビルド・公開する
+リポジトリは Organization サイト `norapo/norapo.github.io`（public 必須）。Settings → Pages → Build and deployment → Source: **GitHub Actions** 設定済みで、main へ push するだけで `.github/workflows/deploy.yml` が自動でビルド・公開する。
+
+カスタムドメインへ移行する場合は Settings → Pages でドメインを設定し、`src/pages/404.astro` の絶対パス 3 箇所を更新する。
 
 ## 編集の約束
 
