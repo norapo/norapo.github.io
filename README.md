@@ -1,6 +1,6 @@
 # norapo.github.io
 
-[Norapo](https://github.com/norapo)（目的地への方向と距離だけを iPhone と Apple Watch に表示する矢印ナビアプリ）の公式サイト。
+[Norapo](https://norapo.github.io)（目的地への方向と距離だけを iPhone と Apple Watch に表示する矢印ナビアプリ）の公式サイト。
 
 公開 URL: **https://norapo.github.io/**
 
@@ -52,7 +52,25 @@ npm run build
 
 - **スタイルは `public/assets/site.css` のみ**に書く。ページ内 `<style>` は増やさない
 - **ヘッダー・フッター・head 共通タグの正本は `src/components/Header.astro` / `Footer.astro` / `src/layouts/Base.astro`**。新規ページを追加したら `src/pages/` にファイルを追加し、`Base.astro` に渡す `root`（ページ階層に応じた相対パスの接頭辞。ルート: `"./"`、1 階層下: `"../"`）と `current`（ナビの現在地表示）を指定する
-- アプリアイコンの正本は norapo 本体の `NorapoApp/AppIcon.icon`。変えたら `public/assets/icon.svg`・`public/assets/favicon-32.png`・`public/assets/apple-touch-icon.png` を作り直す。PNG 化は `qlmanage -t -s <サイズ> <svg> -o <出力先>`（ImageMagick は SVG の transform を崩すので使わない。apple-touch-icon は `rx="0"` にした正方形版から生成）
+- アプリアイコンの正本は norapo 本体の `NorapoApp/AppIcon.icon`。変えたら `public/assets/icon.svg`・`public/assets/favicon-32.png`・`public/assets/apple-touch-icon.png` を作り直す（ImageMagick で SVG を直接レンダリングするのは transform 連鎖を崩すので禁止。既存 PNG のピクセル検査など SVG レンダリング以外の用途では使ってよい）
+  - `favicon-32.png`（角丸込み・透過必須）: Chrome ヘッドレスで `icon.svg` を `<img>` で読み込む HTML をレンダリングし（Blink は SVG transform を正しく描く）、`sips -z 32 32` で縮小する
+    ```bash
+    cat > /tmp/icon.html <<'HTML'
+    <!DOCTYPE html><html><head><style>
+    html,body{margin:0;padding:0;background:transparent}
+    img{display:block;width:320px;height:320px}
+    </style></head><body>
+    <img src="file:///絶対パス/public/assets/icon.svg" width="320" height="320">
+    </body></html>
+    HTML
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+      --headless=new --disable-gpu --screenshot=/tmp/icon-320.png \
+      --default-background-color=00000000 --window-size=320,320 \
+      --force-device-scale-factor=1 "file:///tmp/icon.html"
+    sips -z 32 32 /tmp/icon-320.png --out public/assets/favicon-32.png
+    ```
+    角丸の外側は必ずアルファ 0 の透過にする（`qlmanage -t` は透過背景を出せず白背景になるため favicon-32.png の生成には使わない）
+  - `apple-touch-icon.png`（180x180・不透明必須）: `rx="0"` にした正方形版から `qlmanage -t -s 180 <svg> -o <出力先>` で生成（iOS は透過を黒で埋めるため不透明が正しい）
 - 文言はストア掲載文・アプリ内文言と整合させる。正本は norapo 本体リポジトリの
   `docs/release-plan/store-listing-draft.md`（ストア文言）と `docs/release-plan/positioning.md`（訴求の骨格・文体規則）
 - カラートークンの正は norapo 本体の `design/01-design-tokens.md`
